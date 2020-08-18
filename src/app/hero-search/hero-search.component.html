@@ -1,0 +1,21 @@
+<div id ="search-component">
+
+  <h4><label for="search-box">Hero Search</label></h4>
+
+  <!-- input 事件的事件繫結會呼叫 search() 方法。 -->
+  <!-- 直接呼叫 searchHeroes() 將導致建立海量的 HTTP 請求 -->
+  <!-- 處理管道中加入了一系列 RxJS 運算子，用以縮減對 searchHeroes() 的呼叫次數，並最終返回一個可及時給出英雄搜尋結果的可觀察物件（每次都是 Hero[] ）。 -->
+  <input #searchBox id = "search-box" (input)="search(searchBox.value)" />
+
+  <ul class="search-result">
+
+    <!-- $ 是一個約定，表示 heroes$ 是一個 Observable 而不是陣列。 -->
+    <!-- 由於 *ngFor 不能直接使用 Observable，所以要使用一個管道字元（|），後面緊跟著一個 async。這表示 Angular 的 AsyncPipe 管道，它會自動訂閱 Observable， -->
+
+    <li *ngFor="let hero of heroes$ |async" >
+      <a routerLink="/detail/{{hero.id}}">
+      {{hero.name}}
+      </a>
+    </li>
+  </ul>
+</div>

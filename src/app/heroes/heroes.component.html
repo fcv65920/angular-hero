@@ -18,6 +18,10 @@
       <span class="badge">{{hero.id}}</span> {{hero.name}}
     </a>
 
+    <!-- 刪除 -->
+
+    <button class="delete" title="delete hero"
+      (click)="delete(hero)">X刪</button>
   </li>
 </ul>
 
@@ -38,3 +42,13 @@
 
 <!-- 改成路由 從英雄列表檢視切換到英雄詳情檢視。 -->
 <!-- <app-hero-detail [hero]="selectedHero"></app-hero-detail> -->
+
+新增英雄
+<div>
+  <label>
+    Hero Name:
+    <input #heroName />
+  </label>
+  <!-- 呼叫元件的點選處理器（add()），然後清空這個輸入框 -->
+  <button (click)="add(heroName.value); heroName.value=''"> add </button>
+</div>
